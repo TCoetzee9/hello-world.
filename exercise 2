@@ -1,0 +1,32 @@
+CONSTANT FEE_PERCENT = 0.01
+CONSTANT FEE_DEDUCTION = 5
+
+DECLARE accountBalance AS REAL
+DECLARE overDrawnFee AS REAL
+DECLARE overdrawnCount AS INTEGER
+DECLARE newBalance AS REAL
+
+START
+    // INPUT: Get account balance and overdrawn count
+    PRINT "Enter the account balance:"
+    INPUT accountBalance
+    PRINT "Enter the number of times the account was overdrawn:"
+    INPUT overdrawnCount
+
+    // PROCESS: Calculate the fee
+    overDrawnFee = (accountBalance * FEE_PERCENT) - (overdrawnCount * FEE_DEDUCTION)
+
+    // PROCESS: Make sure fee is not less than 0
+    IF overDrawnFee < 0 THEN
+        overDrawnFee = 0
+    END IF
+
+    // PROCESS: Calculate new account balance
+    newBalance = accountBalance - overDrawnFee
+
+    // OUTPUT: Display the results
+    PRINT "The fee is: $" + overDrawnFee
+    PRINT "The new account balance is: $" + newBalance
+    PRINT "Thanks for using this program"
+
+END
